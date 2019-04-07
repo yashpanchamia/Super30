@@ -10,8 +10,8 @@ class MyHashMap(object):
         """
         Initialize your data structure here.
         """
-        self.size = 10000
-        self.hash = [None] * self.size
+        self.size = 100
+        self.hash_map = [None] * self.size
 
     def put(self, key, value):
         """
@@ -21,7 +21,7 @@ class MyHashMap(object):
         :rtype: void
         """
         slot = key % self.size              
-        curr = self.hash[slot]
+        curr = self.hash_map[slot]
         while curr:
             if curr.key == key:
                 curr.val = value
@@ -29,8 +29,8 @@ class MyHashMap(object):
             curr = curr.next
             
         node = Node(key,value)
-        node.next = self.hash[slot]
-        self.hash[slot] = node
+        node.next = self.hash_map[slot]
+        self.hash_map[slot] = node
 
     def get(self, key):
         """
@@ -39,7 +39,7 @@ class MyHashMap(object):
         :rtype: int
         """
         slot = key % self.size
-        curr = self.hash[slot]
+        curr = self.hash_map[slot]
         while curr:
             if curr.key == key:
                 return curr.val
@@ -54,7 +54,7 @@ class MyHashMap(object):
         :rtype: void
         """
         slot = key % self.size
-        curr = self.hash[slot]
+        curr = self.hash_map[slot]
         while curr:
             if curr.key == key:
                 curr.key = -1
@@ -62,3 +62,13 @@ class MyHashMap(object):
             curr = curr.next
         
         return
+
+# Your MyHashMap object will be instantiated and called as such:
+obj = MyHashMap()
+obj.put(1,0)
+obj.put(1,10)
+obj.put(2,2)
+obj.put(2,12)
+param_2 = obj.get(1)
+obj.remove(1)
+
